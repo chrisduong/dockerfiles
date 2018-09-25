@@ -1,6 +1,6 @@
 FROM  owasp/dependency-check
 
-LABEL version="1.0" maintainer="Chris Duong <tddduong@astro.com.my>"
+LABEL version="1.0"
 
 ENV PLUGIN_SCAN="."
 ENV PLUGIN_FORMAT="HTML"

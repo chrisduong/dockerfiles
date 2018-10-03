@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "Running with: ..."
 echo "PLUGIN_DATA_DIRECTORY: ${PLUGIN_DATA_DIRECTORY}"
@@ -12,9 +12,17 @@ if [ ! -w "$PLUGIN_REPORT" ]; then
    exit 2
 fi
 
-/usr/share/dependency-check/bin/dependency-check.sh \
-    --data ${PLUGIN_DATA_DIRECTORY} \
-    --scan ${PLUGIN_SCAN} \
-    --format ${PLUGIN_FORMAT} \
-    --project ${PLUGIN_PROJECT} \
-    --out ${PLUGIN_REPORT}
+# Get scan patterns
+IFS=","
+for v in $PLUGIN_SCAN
+do
+   scanOpts+=(--scan $v)
+done
+
+PARMS=(--data ${PLUGIN_DATA_DIRECTORY})
+PARMS+=("${scanOpts[@]}")
+PARMS+=(--format ${PLUGIN_FORMAT})
+PARMS+=(--project ${PLUGIN_PROJECT})
+PARMS+=(--out ${PLUGIN_REPORT})
+
+/usr/share/dependency-check/bin/dependency-check.sh "${PARMS[@]}"

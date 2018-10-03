@@ -15,3 +15,7 @@ docker run --rm -it \
   -e PLUGIN_REPORT=reports \
   chrisduong/drone-dep-check
 ```
+
+## Resources
+
+[Command Line Arguments](https://jeremylong.github.io/DependencyCheck/dependency-check-cli/arguments.html)

@@ -6,13 +6,32 @@ We need to capture the PID of the process so we can graceful shutdown this conta
 
 ## Usage
 
+### Environment Variables
+
+**PLUGIN_SCAN:** default is the current directory.
+
+**PLUGIN_REPORT:** default is the current directory.
+
+**PLUGIN_FORMAT:** default is HTML.
+
+### Docker command
+
+**Cache**:
+
 ```sh
 docker run --rm -it \
   -v $(pwd):/src -w /src \
   -e PLUGIN_PROJECT=abc \
-  -e PLUGIN_SCAN=package.json \
   -v /Users/abc/depcheck-data:/usr/share/dependency-check/data \
-  -e PLUGIN_REPORT=reports \
+  chrisduong/drone-dep-check
+```
+
+**Debug:**
+
+```sh
+docker run --rm -it \
+  -v $(pwd):/src -w /src \
+  --entrypoint=/bin/bash \
   chrisduong/drone-dep-check
 ```
 
